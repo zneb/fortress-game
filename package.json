@@ -4,7 +4,7 @@
   "description": "A demo of connexion with one room with socket.io and Node.JS",
   "main": "server.js",
   "dependencies": {
-    "express": "~4.10.2",
+    "express": "^4.17.1",
     "socket.io": "latest"
   }
 }
