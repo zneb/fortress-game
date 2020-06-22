@@ -31,18 +31,18 @@ Player = function(game, canvas) {
     this.textArmor = document.getElementById('textArmor');
 
     window.addEventListener("keyup", function(evt) {
-        if(evt.keyCode == 90 || evt.keyCode == 83 || evt.keyCode == 81 || evt.keyCode == 68 ){
+        if(evt.keyCode == 83 || evt.keyCode == 87 || evt.keyCode == 68 || evt.keyCode == 65 ){
             switch(evt.keyCode){
-                case 90:
+                case 83:
                 _this.camera.axisMovement[0] = false;
                 break;
-                case 83:
+                case 87:
                 _this.camera.axisMovement[1] = false;
                 break;
-                case 81:
+                case 68:
                 _this.camera.axisMovement[2] = false;
                 break;
-                case 68:
+                case 65:
                 _this.camera.axisMovement[3] = false;
                 break;
             }
@@ -56,18 +56,18 @@ Player = function(game, canvas) {
 
     // Quand les touches sont relachés
     window.addEventListener("keydown", function(evt) {
-        if(evt.keyCode == 90 || evt.keyCode == 83 || evt.keyCode == 81 || evt.keyCode == 68 ){
+        if(evt.keyCode == 83 || evt.keyCode == 87 || evt.keyCode == 68 || evt.keyCode == 65 ){
             switch(evt.keyCode){
-                case 90:
+                case 83:
                 _this.camera.axisMovement[0] = true;
                 break;
-                case 83:
+                case 87:
                 _this.camera.axisMovement[1] = true;
                 break;
-                case 81:
+                case 68:
                 _this.camera.axisMovement[2] = true;
                 break;
-                case 68:
+                case 65:
                 _this.camera.axisMovement[3] = true;
                 break;
                 // case 13:
