@@ -154,7 +154,7 @@ Player = function(game, canvas) {
     _this.camera.canJump = true;
 
     // La hauteur de saut
-    _this.jumpHeight = 10;
+    _this.jumpHeight = 3;
 
     // La hauteur du personnage
     _this.originHeight = _this.camera.playerBox.position.clone();
