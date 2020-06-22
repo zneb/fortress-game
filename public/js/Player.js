@@ -83,7 +83,7 @@ Player = function(game, canvas) {
     }, false);
 
     // Quand la souris bouge dans la scène
-    window.addEventListener("mousemove", function(evt) {
+    window.addEventListener("pointermove", function(evt) {
         if(_this.rotEngaged === true){
             _this.camera.playerBox.rotation.y+=evt.movementX * 0.001 * (_this.angularSensibility / 250);
             var nextRotationX = _this.camera.playerBox.rotation.x + (evt.movementY * 0.001 * (_this.angularSensibility / 250));
@@ -101,7 +101,7 @@ Player = function(game, canvas) {
     var canvas = this.game.scene.getEngine().getRenderingCanvas();
 
     // On affecte le clic et on vérifie qu'il est bien utilisé dans la scène (_this.controlEnabled)
-    canvas.addEventListener("mousedown", function(evt) {
+    canvas.addEventListener("pointerdown", function(evt) {
 
         if (_this.controlEnabled && !_this.weponShoot) {
             _this.weponShoot = true;
@@ -110,7 +110,7 @@ Player = function(game, canvas) {
     }, false);
 
     // On fais pareil quand l'utilisateur relache le clic de la souris
-    canvas.addEventListener("mouseup", function(evt) {
+    canvas.addEventListener("pointerup", function(evt) {
         if (_this.controlEnabled && _this.weponShoot) {
             _this.weponShoot = false;
             _this.handleUserMouseUp();
@@ -120,7 +120,7 @@ Player = function(game, canvas) {
     // Changement des armes
     this.previousWheeling = 0;
 
-    canvas.addEventListener("mousewheel", function(evt) {
+    canvas.addEventListener("wheel", function(evt) {
         // Si la différence entre les deux tour de souris sont minime
         if(Math.round(evt.timeStamp - _this.previousWheeling)>10){
             if(evt.deltaY<0){
