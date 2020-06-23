@@ -33,18 +33,18 @@ Player = function(game, canvas) {
     this.textHealth = document.getElementById('textHealth');
 
     window.addEventListener("keyup", function(evt) {
-        if(evt.keyCode == 83 || evt.keyCode == 87 || evt.keyCode == 68 || evt.keyCode == 65 ){
-            switch(evt.keyCode){
-                case 83:
+        if(evt.code == "KeyS" || evt.code == "KeyW" || evt.code == "KeyD" || evt.code == "KeyA" ){
+            switch(evt.code){
+                case "KeyS":
                 _this.camera.axisMovement[0] = false;
                 break;
-                case 87:
+                case "KeyW":
                 _this.camera.axisMovement[1] = false;
                 break;
-                case 68:
+                case "KeyD":
                 _this.camera.axisMovement[2] = false;
                 break;
-                case 65:
+                case "KeyA":
                 _this.camera.axisMovement[3] = false;
                 break;
             }
@@ -58,18 +58,18 @@ Player = function(game, canvas) {
 
     // Quand les touches sont relachés
     window.addEventListener("keydown", function(evt) {
-        if(evt.keyCode == 83 || evt.keyCode == 87 || evt.keyCode == 68 || evt.keyCode == 65 ){
-            switch(evt.keyCode){
-                case 83:
+        if(evt.code == "KeyS" || evt.code == "KeyW" || evt.code == "KeyD" || evt.code == "KeyA" ){
+            switch(evt.code){
+                case "KeyS":
                 _this.camera.axisMovement[0] = true;
                 break;
-                case 87:
+                case "KeyW":
                 _this.camera.axisMovement[1] = true;
                 break;
-                case 68:
+                case "KeyD":
                 _this.camera.axisMovement[2] = true;
                 break;
-                case 65:
+                case "KeyA":
                 _this.camera.axisMovement[3] = true;
                 break;
                 // case 13:
@@ -179,7 +179,7 @@ Player = function(game, canvas) {
     // La hauteur du personnage
     _this.originHeight = _this.camera.playerBox.position.clone();
     window.addEventListener("keypress", function(evt) {
-        if(evt.keyCode === 32){
+        if(evt.code === "Space"){
             if(_this.camera.canJump===true){
                 _this.camera.jumpNeed = _this.camera.playerBox.position.y + _this.jumpHeight;
 
