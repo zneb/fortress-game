@@ -415,15 +415,8 @@ Arena.prototype = {
             }else{
                 this.camera.health += amountBonus;
             }
-        }else if (typeBonus === 'armor'){
-            if(this.camera.armor + amountBonus>100){
-                this.camera.armor = 100;
-            }else{
-                this.camera.armor += amountBonus;
-            }
         } 
         this.textHealth.innerText = this.camera.health;
-        this.textArmor.innerText = this.camera.armor;
     },
     deletePropFromServer : function(deletedProp){
         // idServer est l'id de l'arme

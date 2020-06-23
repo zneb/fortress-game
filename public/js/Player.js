@@ -28,7 +28,6 @@ Player = function(game, canvas) {
     this.axisMovement = [false,false,false,false];
 
     this.textHealth = document.getElementById('textHealth');
-    this.textArmor = document.getElementById('textArmor');
 
     window.addEventListener("keyup", function(evt) {
         if(evt.keyCode == 83 || evt.keyCode == 87 || evt.keyCode == 68 || evt.keyCode == 65 ){
@@ -148,7 +147,6 @@ Player = function(game, canvas) {
 
     // Affichage de la vie et de l'armure
     this.textHealth.innerText = this.camera.health;
-    this.textArmor.innerText = this.camera.armor;
 
     // Si je loueur peut sauter ou non
     _this.camera.canJump = true;
@@ -206,8 +204,6 @@ Player.prototype = {
         this.camera.health = 100;
         // Pour savoir que c'est le joueur principal
         this.camera.isMain = true;
-        // L'armure du joueur
-        this.camera.armor = 0;
 
         // On crée les armes !
         this.camera.weapons = new Weapons(this);
@@ -360,26 +356,15 @@ Player.prototype = {
     },
     getDamage : function(damage, whoDamage){
         var damageTaken = damage;
-        // Tampon des dégats par l'armure
-        if(this.camera.armor > Math.round(damageTaken/2)){
-            this.camera.armor -= Math.round(damageTaken/2);
-            damageTaken = Math.round(damageTaken/2);
-        }else{
-            damageTaken = damageTaken - this.camera.armor;
-            this.camera.armor = 0;
-        }
-        // Prise des dégats avec le tampon de l'armure
-        // Prise des dégats avec le tampon de l'armure
+
         if(this.camera.health>damageTaken){
             this.camera.health-=damageTaken;
             if(this.camera.isMain){
                 this.textHealth.innerText = this.camera.health;
-                this.textArmor.innerText = this.camera.armor;
             }
         }else{
             if(this.camera.isMain){
                 this.textHealth.innerText = 0;
-                this.textArmor.innerText = 0;
             }
             this.playerDead(whoDamage)
         }
@@ -495,15 +480,8 @@ Player.prototype = {
             }else{
                 this.camera.health += amountBonus;
             }
-        }else if (typeBonus === 'armor'){
-            if(this.camera.armor + amountBonus>100){
-                this.camera.armor = 100;
-            }else{
-                this.camera.armor += amountBonus;
-            }
-        } 
+        }
         this.textHealth.innerText = this.camera.health;
-        this.textArmor.innerText = this.camera.armor;
     },
     // FONCTIONS MULTIJOUEUR
     sendNewData : function(data){
@@ -515,7 +493,6 @@ Player.prototype = {
     sendActualData : function(){
         return {
             actualTypeWeapon : this.camera.weapons.actualWeapon,
-            armor : this.camera.armor,
             life : this.camera.health,
             position  : this.camera.playerBox.position,
             rotation : this.camera.playerBox.rotation,

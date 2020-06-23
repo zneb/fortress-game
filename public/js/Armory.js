@@ -101,12 +101,6 @@ Armory = function(game, player) {
             'message' : 'Petit pack de santé',
             'type':'health',
             'value': 20
-        },
-        {
-            'name' : 'lArmor',
-            'message' : 'Petit pack d\'armure',
-            'type':'armor',
-            'value': 20
         }
     ];
     this.multiKillAnnoucement=["Double Kill", "Multi Kill", "Mega Kill", "ULTRA KILL", "LUDICROUS", "TEETH SHOWER", "INSANE", "DEMONIC", "HAIL THE HELIX", "ASS CRUSHER", "DIVINE", "GENOCIDE","OMFWTFBBQ", "42" , "HOLY SHIT"];

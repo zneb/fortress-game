@@ -115,7 +115,6 @@ io.on('connection', function(socket){
         id: socket.client.id,
         name: socket.name,
         life: 100,
-        armor: 0,
         jumpNeed: false,
         position: getSpawnPoint(), // ex: { x:100, y:5, z:0}
         actualTypeWeapon: 1,
@@ -188,12 +187,6 @@ io.on('connection', function(socket){
                     room[i].rotation.y = data.rotation.y;
                     room[i].rotation.z = data.rotation.z;
                     datasend.rotation = room[i].rotation;
-                }
-                if(data.armor){
-                    room[i].armor = data.armor;
-                    room[i].health = data.health;
-                    datasend.armor = room[i].armor;
-                    datasend.health = room[i].health;
                 }
                 if(data.actualWeapon){
                     room[i].actualWeapon = data.actualWeapon;
