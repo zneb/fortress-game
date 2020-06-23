@@ -36,7 +36,7 @@ GhostPlayer = function(game,ghostData,idRoom) {
 	fakePlayer.bodyChar.position.y-=0.6;
 	fakePlayer.bodyChar.isPickable = false;
 
-	// Les datas de vie et d'armure du joueur
+	// Les datas de vie du joueur
 	fakePlayer.health = ghostData.life;
 
 	// Une variable en prévision de la fonction de saut

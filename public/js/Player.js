@@ -33,18 +33,18 @@ Player = function(game, canvas) {
     this.textHealth = document.getElementById('textHealth');
 
     window.addEventListener("keyup", function(evt) {
-        if(evt.code == "KeyS" || evt.code == "KeyW" || evt.code == "KeyD" || evt.code == "KeyA" ){
+        if(evt.code == "KeyW" || evt.code == "KeyS" || evt.code == "KeyA" || evt.code == "KeyD" ){
             switch(evt.code){
-                case "KeyS":
+                case "KeyW":
                 _this.camera.axisMovement[0] = false;
                 break;
-                case "KeyW":
+                case "KeyS":
                 _this.camera.axisMovement[1] = false;
                 break;
-                case "KeyD":
+                case "KeyA":
                 _this.camera.axisMovement[2] = false;
                 break;
-                case "KeyA":
+                case "KeyD":
                 _this.camera.axisMovement[3] = false;
                 break;
             }
@@ -58,18 +58,18 @@ Player = function(game, canvas) {
 
     // Quand les touches sont relachés
     window.addEventListener("keydown", function(evt) {
-        if(evt.code == "KeyS" || evt.code == "KeyW" || evt.code == "KeyD" || evt.code == "KeyA" ){
+        if(evt.code == "KeyW" || evt.code == "KeyS" || evt.code == "KeyA" || evt.code == "KeyD" ){
             switch(evt.code){
-                case "KeyS":
+                case "KeyW":
                 _this.camera.axisMovement[0] = true;
                 break;
-                case "KeyW":
+                case "KeyS":
                 _this.camera.axisMovement[1] = true;
                 break;
-                case "KeyD":
+                case "KeyA":
                 _this.camera.axisMovement[2] = true;
                 break;
-                case "KeyA":
+                case "KeyD":
                 _this.camera.axisMovement[3] = true;
                 break;
                 // case 13:
@@ -234,7 +234,7 @@ Player.prototype = {
         this.camera.axisMovement = [false,false,false,false];
 
         // On réinitialise la position de la caméra
-        this.camera.setTarget(BABYLON.Vector3.Zero());
+        //this.camera.setTarget(BABYLON.Vector3.Zero());
         this.camera.canJump = true;
         this.game.scene.activeCamera = this.camera;
 
