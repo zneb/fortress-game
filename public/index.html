@@ -54,6 +54,15 @@
         </div>
         <div id="crossHair"><img  src="assets/icons/target.svg" /></div>
         <canvas id="renderCanvas"></canvas>
+        <script type="text/javascript">
+            var popit = true;
+            window.onbeforeunload = function() { 
+                if(popit == true) {
+                    popit = false;
+                    return "Are you sure you want to leave?"; 
+                }
+            }
+        </script>
     </body>
     
     <!-- SCRIPTS BABYLON -->

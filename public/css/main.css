@@ -135,11 +135,11 @@ h2{
 }
 #leaderBoard{
 	float: right;
-    height: 280px;
+    height: 210px;
     width: 220px;
     background-color: rgba(61,61,61,.5);
     border-bottom-left-radius: 5px;
-    padding:30px;
+    padding:0 30px;
     color: white;
     margin-right: 20px;
 }
@@ -152,6 +152,7 @@ h2{
     padding: 10px;
     position: relative;
     border: 1px solid #b1b1b1;
+    border-radius: 10px;
 }
 #leaderBoard ul li{
     padding: 8px 0;
