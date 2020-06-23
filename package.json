@@ -1,8 +1,13 @@
 {
-  "name": "1roomdemosocket.io",
+  "name": "fortress-online",
   "version": "0.1.0",
   "description": "A demo of connexion with one room with socket.io and Node.JS",
   "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "build": "node server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
   "dependencies": {
     "express": "^4.17.1",
     "socket.io": "latest"
