@@ -1,14 +1,14 @@
 // Defaults
 //Key bindings
-var JumpKey = 32;   // Space
-var FowardKey = 87; // W
-var BackKey = 83;   // S
-var leftKey = 65;   // A
-var rightKey = 68;  // D
-var crouchKey = 16; // Shift
-var reloadKey = 82; // R
-var chatKey = 84;   // T
-var exitKey = 9;    // Tab
+var JumpKey = " ";
+var FowardKey = "KeyW";
+var BackKey = "KeyS";
+var leftKey = "KeyA";
+var rightKey = "KeyD";
+var crouchKey = "ShiftLeft";
+var reloadKey = "KeyR";
+var chatKey = "KeyT";
+var exitKey = "Tab";
 
 // Settings
 var warnOnClose = true;         // Warn user on tab close
