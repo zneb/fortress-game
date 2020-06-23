@@ -89,6 +89,26 @@ Armory = function(game, player) {
             }
         }
     ];
+    this.classes=[
+        {
+            'name':'Scout',
+            'model' : {
+                // 'meshUrl': '',
+                'meshName': 'Scout'
+            },
+            'Weapons':{
+            }
+        },
+        {
+            'name':'Soldier',
+            'model' : {
+                // 'meshUrl': '',
+                'meshName': 'Soldier'
+            },
+            'Weapons':{
+            }
+        }      
+    ];
     this.bonuses=[
         {
             'name': 'mHealth', 
