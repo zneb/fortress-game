@@ -33,54 +33,50 @@ Player = function(game, canvas) {
     this.textHealth = document.getElementById('textHealth');
 
     window.addEventListener("keyup", function(evt) {
-        if(evt.code == "KeyW" || evt.code == "KeyS" || evt.code == "KeyA" || evt.code == "KeyD" ){
-            switch(evt.code){
-                case "KeyW":
-                _this.camera.axisMovement[0] = false;
-                break;
-                case "KeyS":
-                _this.camera.axisMovement[1] = false;
-                break;
-                case "KeyA":
-                _this.camera.axisMovement[2] = false;
-                break;
-                case "KeyD":
-                _this.camera.axisMovement[3] = false;
-                break;
-            }
-            var data={
-                axisMovement : _this.camera.axisMovement
-            };
-            _this.sendNewData(data)
-            
+        switch(evt.code){
+            case "KeyW":
+            _this.camera.axisMovement[0] = false;
+            break;
+            case "KeyS":
+            _this.camera.axisMovement[1] = false;
+            break;
+            case "KeyA":
+            _this.camera.axisMovement[2] = false;
+            break;
+            case "KeyD":
+            _this.camera.axisMovement[3] = false;
+            break;
         }
+        var data={
+            axisMovement : _this.camera.axisMovement
+        };
+        _this.sendNewData(data)
+
     }, false);
 
     // Quand les touches sont relachés
     window.addEventListener("keydown", function(evt) {
-        if(evt.code == "KeyW" || evt.code == "KeyS" || evt.code == "KeyA" || evt.code == "KeyD" ){
-            switch(evt.code){
-                case "KeyW":
-                _this.camera.axisMovement[0] = true;
-                break;
-                case "KeyS":
-                _this.camera.axisMovement[1] = true;
-                break;
-                case "KeyA":
-                _this.camera.axisMovement[2] = true;
-                break;
-                case "KeyD":
-                _this.camera.axisMovement[3] = true;
-                break;
-                // case 13:
-                //     _this.newDeadEnnemy();
-                // break;
-            }
-            var data={
-                axisMovement : _this.camera.axisMovement
-            };
-            _this.sendNewData(data)
+        switch(evt.code){
+            case "KeyW":
+            _this.camera.axisMovement[0] = true;
+            break;
+            case "KeyS":
+            _this.camera.axisMovement[1] = true;
+            break;
+            case "KeyA":
+            _this.camera.axisMovement[2] = true;
+            break;
+            case "KeyD":
+            _this.camera.axisMovement[3] = true;
+            break;
+            // case 13:
+            //     _this.newDeadEnnemy();
+            // break;
         }
+        var data={
+            axisMovement : _this.camera.axisMovement
+        };
+        _this.sendNewData(data)
         
     }, false);
 
@@ -180,7 +176,7 @@ Player = function(game, canvas) {
     _this.originHeight = _this.camera.playerBox.position.clone();
     window.addEventListener("keypress", function(evt) {
         if(evt.code === "Space"){
-            if(_this.camera.canJump===true){
+            if(_this.camera.canJump===true && !(evt.repeat)){
                 _this.camera.jumpNeed = _this.camera.playerBox.position.y + _this.jumpHeight;
 
                 _this.camera.canJump=false;
