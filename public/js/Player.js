@@ -3,7 +3,10 @@ Player = function(game, canvas) {
     var _this = this;
 
     // Si le tir est activée ou non
-    this.weponShoot = false;
+    this.weaponShoot = false;
+
+    // Si le tir est activée ou non
+    this.weaponAlt = true;
 
     // On ajoute les joueurs
     this.ghostPlayers=[];
@@ -101,18 +104,37 @@ Player = function(game, canvas) {
 
     // On affecte le clic et on vérifie qu'il est bien utilisé dans la scène (_this.controlEnabled)
     canvas.addEventListener("pointerdown", function(evt) {
-
-        if (_this.controlEnabled && !_this.weponShoot) {
-            _this.weponShoot = true;
-            _this.handleUserMouseDown();
-        }
+        switch(evt.button) {
+            case 0:
+                if (_this.controlEnabled && !_this.weaponShoot) {
+                    _this.weaponShoot = true;
+                    _this.handleUserMouseDown();
+                }
+                break;
+            case 2:
+                if (_this.controlEnabled && !_this.weaponAlt) {
+                    _this.weaponAlt = true;
+                    _this.handleUserMouseDown();
+                }
+                break;
+    }
     }, false);
 
     // On fais pareil quand l'utilisateur relache le clic de la souris
     canvas.addEventListener("pointerup", function(evt) {
-        if (_this.controlEnabled && _this.weponShoot) {
-            _this.weponShoot = false;
-            _this.handleUserMouseUp();
+        switch(evt.button) {
+            case 0:
+                if (_this.controlEnabled && _this.weaponShoot) {
+                    _this.weaponShoot = false;
+                    _this.handleUserMouseUp();
+                }
+                break;
+                case 2:
+                if (_this.controlEnabled && !_this.weaponAlt) {
+                    _this.weaponAlt = false;
+                    _this.handleUserMouseUp();
+                }
+                break;
         }
     }, false);
 
