@@ -78,7 +78,7 @@ var spawnPointsList = [
     {x:40, y:5, z:0}
 ];
 
-var bonusBoxes = [
+var healBoxes = [
     {x:33, y:1.5,z:-20,t:2,v:1},
     {x:-33, y:1.5,z:-20,t:0,v:1}
 ];
@@ -91,7 +91,7 @@ var ammosBoxes = [
     {x:-33, y:1.5,z:40,t:3,v:1},
 ];
 
-var props = [bonusBoxes,weaponBoxes,ammosBoxes]
+var props = [healBoxes,weaponBoxes,ammosBoxes]
 var countUsers = 0; // number of users since the beginning of the server
 // ================================================
 
@@ -214,8 +214,8 @@ io.on('connection', function(socket){
                 ammosBoxes[idServer].v = 0;
                 launchCountDownRepop(2000,dataRemove);
             break;
-            case 'bonus' :
-                bonusBoxes[idServer].v = 0;
+            case 'heal' :
+                healBoxes[idServer].v = 0;
                 launchCountDownRepop(2000,dataRemove);
             break;
             case 'weapon' :
@@ -262,8 +262,8 @@ var launchCountDownRepop = function(time,dataRemoved){
             case 'ammos' :
                 ammosBoxes[dataRecreated[0]].v = 1;
             break;
-            case 'bonus' :
-                bonusBoxes[dataRecreated[0]].v = 1;
+            case 'heal' :
+                healBoxes[dataRecreated[0]].v = 1;
             break;
             case 'weapon' :
                 weaponBoxes[dataRecreated[0]].v = 1;

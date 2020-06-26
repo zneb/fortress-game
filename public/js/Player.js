@@ -59,15 +59,19 @@ Player = function(game, canvas) {
         switch(evt.code){
             case "KeyW":
             _this.camera.axisMovement[0] = true;
+            _this.camera.axisMovement[1] = false;
             break;
             case "KeyS":
             _this.camera.axisMovement[1] = true;
+            _this.camera.axisMovement[0] = false;
             break;
             case "KeyA":
             _this.camera.axisMovement[2] = true;
+            _this.camera.axisMovement[3] = false;
             break;
             case "KeyD":
             _this.camera.axisMovement[3] = true;
+            _this.camera.axisMovement[2] = false;
             break;
         }
         var data={
@@ -309,33 +313,33 @@ Player.prototype = {
         }
         if(playerSelected.axisMovement[0]){
             forward = new BABYLON.Vector3(
-                parseFloat(Math.sin(parseFloat(rotationPoint.y))) * relativeSpeed/1.4, 
+                parseFloat(Math.sin(parseFloat(rotationPoint.y))) * relativeSpeed / 1.4, 
                 0, 
-                parseFloat(Math.cos(parseFloat(rotationPoint.y))) * relativeSpeed/1.4
+                parseFloat(Math.cos(parseFloat(rotationPoint.y))) * relativeSpeed / 1.4
             );
             playerSelected.playerBox.moveWithCollisions(forward);
         }
         if(playerSelected.axisMovement[1]){
             backward = new BABYLON.Vector3(
-                parseFloat(-Math.sin(parseFloat(rotationPoint.y))) * relativeSpeed/1.4, 
+                parseFloat(-Math.sin(parseFloat(rotationPoint.y))) * relativeSpeed / 1.4, 
                 0, 
-                parseFloat(-Math.cos(parseFloat(rotationPoint.y))) * relativeSpeed/1.4
+                parseFloat(-Math.cos(parseFloat(rotationPoint.y))) * relativeSpeed / 1.4 * 0.9
             );
             playerSelected.playerBox.moveWithCollisions(backward);
         }
         if(playerSelected.axisMovement[2]){
             left = new BABYLON.Vector3(
-                parseFloat(Math.sin(parseFloat(rotationPoint.y) + degToRad(-90))) * relativeSpeed/1.4, 
+                parseFloat(Math.sin(parseFloat(rotationPoint.y) + degToRad(-90))) * relativeSpeed / 1.4, 
                 0, 
-                parseFloat(Math.cos(parseFloat(rotationPoint.y) + degToRad(-90))) * relativeSpeed/1.4
+                parseFloat(Math.cos(parseFloat(rotationPoint.y) + degToRad(-90))) * relativeSpeed / 1.4
             );
             playerSelected.playerBox.moveWithCollisions(left);
         }
         if(playerSelected.axisMovement[3]){
             right = new BABYLON.Vector3(
-                parseFloat(-Math.sin(parseFloat(rotationPoint.y) + degToRad(-90))) * relativeSpeed/1.4, 
+                parseFloat(-Math.sin(parseFloat(rotationPoint.y) + degToRad(-90))) * relativeSpeed / 1.4, 
                 0, 
-                parseFloat(-Math.cos(parseFloat(rotationPoint.y) + degToRad(-90))) * relativeSpeed/1.4
+                parseFloat(-Math.cos(parseFloat(rotationPoint.y) + degToRad(-90))) * relativeSpeed / 1.4
             );
             playerSelected.playerBox.moveWithCollisions(right);
         }
@@ -498,16 +502,16 @@ Player.prototype = {
             }
         }, 3000);
     },
-    // Donner un bonus au joueur
-    givePlayerBonus : function(what,howMany) {
+    // Donner un heal au joueur
+    givePlayerHeal : function(what,howMany) {
         
-        var typeBonus = what;
-        var amountBonus = howMany;
-        if(typeBonus === 'health'){
-            if(this.camera.health + amountBonus>100){
+        var typeHeal = what;
+        var amountHeal = howMany;
+        if(typeHeal === 'health'){
+            if(this.camera.health + amountHeal>100){
                 this.camera.health = 100;
             }else{
-                this.camera.health += amountBonus;
+                this.camera.health += amountHeal;
             }
         }
         this.textHealth.innerText = this.camera.health;

@@ -91,7 +91,9 @@ Armory = function(game, player) {
     ];
     this.classes=[
         {
-            'name':'Scout',
+            'name': 'Scout',
+            'Health': '125',
+            'Speed': '1',
             'model' : {
                 // 'meshUrl': '',
                 'meshName': 'Scout'
@@ -109,18 +111,24 @@ Armory = function(game, player) {
             }
         }      
     ];
-    this.bonuses=[
+    this.heals=[
         {
-            'name': 'mHealth', 
-            'message' : 'Gros pack de santé',
-            'type':'health',
-            'value': 75
+            'name': 'lHeal', 
+            'message' : 'Large Health Pack',
+            'type':'heal',
+            'value': 100
         },
         {
-            'name':'lHealth',
-            'message' : 'Petit pack de santé',
-            'type':'health',
-            'value': 20
+            'name':'mHeal',
+            'message' : 'Medium Health Pack',
+            'type':'heal',
+            'value': 50
+        },
+        {
+            'name':'sHeal',
+            'message' : 'Small Health Pack',
+            'type':'heal',
+            'value': 25
         }
     ];
     this.multiKillAnnoucement=["Double Kill", "Multi Kill", "Mega Kill", "ULTRA KILL", "LUDICROUS", "TEETH SHOWER", "INSANE", "DEMONIC", "HAIL THE HELIX", "ASS CRUSHER", "DIVINE", "GENOCIDE","OMFWTFBBQ", "42" , "HOLY SHIT"];

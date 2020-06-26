@@ -202,26 +202,26 @@ Arena = function(game,props) {
     // DEFINITION DES PROPS ------------------------------------------------
 
     // Liste des objets stocké dans le jeu
-    this.bonusBox=[];
+    this.healBox=[];
     this.weaponBox=[];
     this.ammosBox=[];
 
     // Les props envoyé par le serveur
-    this.bonusServer = props[0];
+    this.healServer = props[0];
     this.weaponServer = props[1];
     this.ammosServer = props[2];
 
-    for (var i = 0; i < this.bonusServer.length; i++) {
+    for (var i = 0; i < this.healServer.length; i++) {
         // Si l'objet n'a pas été pris par un joueur
-        if(this.bonusServer[i].v === 1){
-            var newBonusBox = this.newBonuses(new BABYLON.Vector3(
-                this.bonusServer[i].x,
-                this.bonusServer[i].y,
-                this.bonusServer[i].z),
-            this.bonusServer[i].t);
+        if(this.healServer[i].v === 1){
+            var newhealBox = this.newHeals(new BABYLON.Vector3(
+                this.healServer[i].x,
+                this.healServer[i].y,
+                this.healServer[i].z),
+            this.healServer[i].t);
             
-            newBonusBox.idServer = i;
-            this.bonusBox.push(newBonusBox);
+            newhealBox.idServer = i;
+            this.healBox.push(newhealBox);
         }
     }
 
@@ -252,28 +252,28 @@ Arena = function(game,props) {
     }
 };
 Arena.prototype = {
-    newBonuses : function(position,type) {
-        var typeBonus = type;
-        var positionBonus = position;
+    newHeals : function(position,type) {
+        var typeHeal = type;
+        var positionHeal = position;
         
         // On crée un cube
-        var newBonus = BABYLON.Mesh.CreateBox("bonusItem",  2, this.game.scene);
-        newBonus.scaling = new BABYLON.Vector3(1,1,1);
+        var newHeal = BABYLON.Mesh.CreateBox("healItem",  2, this.game.scene);
+        newHeal.scaling = new BABYLON.Vector3(1,1,1);
         
         // On lui donne la couleur orange
-        newBonus.material = new BABYLON.StandardMaterial("textureItem", this.game.scene);
-        newBonus.material.diffuseColor = new BABYLON.Color3((255/255), (138/255), (51/255));
+        newHeal.material = new BABYLON.StandardMaterial("textureItem", this.game.scene);
+        newHeal.material.diffuseColor = new BABYLON.Color3((255/255), (138/255), (51/255));
 
         // On positionne l'objet selon la position envoyé
-        newBonus.position = positionBonus;
+        newHeal.position = positionHeal;
         
         // On le rend impossible a être séléctionné par les raycast
-        newBonus.isPickable = false;
+        newHeal.isPickable = false;
         
          // On affecte à l'objet son type
-        newBonus.typeBonus = typeBonus;
+        newHeal.typeHeal = typeHeal;
 
-        return newBonus;
+        return newHeal;
     },
     newWeaponSet : function(position,type) {
         var typeWeapons = type;
@@ -304,25 +304,25 @@ Arena.prototype = {
         return newAmmo;
     },
     _checkProps : function(){
-        // Pour les bonus
-        for (var i = 0; i < this.bonusBox.length; i++) {
+        // Pour les heal
+        for (var i = 0; i < this.healBox.length; i++) {
             // On vérifie si la distance est inférieure à 6
             if(BABYLON.Vector3.Distance(
                 this.game._PlayerData.camera.playerBox.position,
-                this.bonusBox[i].position)<6){
-                var paramsBonus = this.Armory.bonuses[this.bonusBox[i].typeBonus];
+                this.healBox[i].position)<6){
+                var paramsHeal = this.Armory.heals[this.healBox[i].typeHeal];
 
-                this.game._PlayerData.givePlayerBonus(paramsBonus.type,paramsBonus.value);
+                this.game._PlayerData.givePlayerHeal(paramsHeal.type,paramsHeal.value);
 
-                // Pour la boucle bonusBox
-                this.displayNewPicks(paramsBonus.message);
+                // Pour la boucle healBox
+                this.displayNewPicks(paramsHeal.message);
 
-                // Pour bonusBox
-                this.pickableDestroyed(this.bonusBox[i].idServer,'bonus');
+                // Pour healBox
+                this.pickableDestroyed(this.healBox[i].idServer,'heal');
 
                 // On supprime l'objet
-                this.bonusBox[i].dispose();
-                this.bonusBox.splice(i,1)
+                this.healBox[i].dispose();
+                this.healBox.splice(i,1)
             }
             
         }
@@ -404,16 +404,16 @@ Arena.prototype = {
             
         }
     },
-    // Donner un bonus au joueur
-    givePlayerBonus : function(what,howMany) {
+    // Donner un heal au joueur
+    givePlayerHeal : function(what,howMany) {
         
-        var typeBonus = what;
-        var amountBonus = howMany;
-        if(typeBonus === 'health'){
-            if(this.camera.health + amountBonus>100){
+        var typeHeal = what;
+        var amountHeal = howMany;
+        if(typeHeal === 'health'){
+            if(this.camera.health + amountHeal>100){
                 this.camera.health = 100;
             }else{
-                this.camera.health += amountBonus;
+                this.camera.health += amountHeal;
             }
         } 
         this.textHealth.innerText = this.camera.health;
@@ -435,17 +435,17 @@ Arena.prototype = {
                 }
                 
             break;
-            case 'bonus' :
-                for (var i = 0; i < this.bonusBox.length; i++) {
-                    if(this.bonusBox[i].idServer === idServer){
-                        this.bonusBox[i].dispose();
-                        this.bonusBox.splice(i,1);
+            case 'heal' :
+                for (var i = 0; i < this.healBox.length; i++) {
+                    if(this.healBox[i].idServer === idServer){
+                        this.healBox[i].dispose();
+                        this.healBox.splice(i,1);
                         break;
                     }
                 }
             break;
             case 'weapon' :
-                for (var i = 0; i < this.bonusBox.length; i++) {
+                for (var i = 0; i < this.healBox.length; i++) {
                     if(this.weaponBox[i].idServer === idServer){
                         this.weaponBox[i].dispose();
                         this.weaponBox.splice(i,1);
@@ -469,15 +469,15 @@ Arena.prototype = {
                 newAmmoBox.idServer = idServer;
                 this.ammosBox.push(newAmmoBox);
             break;
-            case 'bonus' :
-                var newBonusBox = this.newBonuses(new BABYLON.Vector3(
-                    this.bonusServer[idServer].x,
-                    this.bonusServer[idServer].y,
-                    this.bonusServer[idServer].z),
-                    this.bonusServer[idServer].t);
+            case 'heal' :
+                var newhealBox = this.newHeals(new BABYLON.Vector3(
+                    this.healServer[idServer].x,
+                    this.healServer[idServer].y,
+                    this.healServer[idServer].z),
+                    this.healServer[idServer].t);
                     
-                newBonusBox.idServer = idServer;
-                this.bonusBox.push(newBonusBox);
+                newhealBox.idServer = idServer;
+                this.healBox.push(newhealBox);
             break;
             case 'weapon' :
                 var newWeaponBox = this.newWeaponSet(new BABYLON.Vector3(
@@ -495,7 +495,7 @@ Arena.prototype = {
     pickableDestroyed : function(idServer,type) {
         destroyPropsToServer(idServer,type)
     },
-    displayNewPicks : function(typeBonus) {
+    displayNewPicks : function(typeHeal) {
         // Récupère les propriétés de la fênetre d'annonce
         var displayAnnouncement = document.getElementById('announcementKill');
         var textDisplayAnnouncement = document.getElementById('textAnouncement');
@@ -508,7 +508,7 @@ Arena.prototype = {
         textDisplayAnnouncement.style.fontSize = '1rem';
         
         // On donne a textDisplayAnnouncement la valeur envoyé à displayNewPicks
-        textDisplayAnnouncement.innerText = typeBonus;
+        textDisplayAnnouncement.innerText = typeHeal;
         
         // Au bout de 4 secondes, si la fenêtre est ouverte, on la fait disparaitre
         setTimeout(function(){ 
