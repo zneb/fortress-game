@@ -69,9 +69,6 @@ Player = function(game, canvas) {
             case "KeyD":
             _this.camera.axisMovement[3] = true;
             break;
-            // case 13:
-            //     _this.newDeadEnnemy();
-            // break;
         }
         var data={
             axisMovement : _this.camera.axisMovement
@@ -175,16 +172,30 @@ Player = function(game, canvas) {
     // La hauteur du personnage
     _this.originHeight = _this.camera.playerBox.position.clone();
     window.addEventListener("keypress", function(evt) {
-        if(evt.code === "Space"){
-            if(_this.camera.canJump===true && !(evt.repeat)){
-                _this.camera.jumpNeed = _this.camera.playerBox.position.y + _this.jumpHeight;
-
-                _this.camera.canJump=false;
-                var data={
-                    jumpNeed : _this.camera.jumpNeed
-                };
-                _this.sendNewData(data)
-            }
+        switch(evt.code) {
+            case "Space":
+                if(_this.camera.canJump===true && !(evt.repeat)){
+                    _this.camera.jumpNeed = _this.camera.playerBox.position.y + _this.jumpHeight;
+    
+                    _this.camera.canJump=false;
+                    var data={
+                        jumpNeed : _this.camera.jumpNeed
+                    };
+                    _this.sendNewData(data)
+                }
+                break;
+            case "Digit1":
+            _this.camera.weapons.selectWeapon(0);
+            break;
+            case "Digit2":
+            _this.camera.weapons.selectWeapon(1);
+            break;
+            case "Digit3":
+            _this.camera.weapons.selectWeapon(2);
+            break;
+            case "Digit4":
+            _this.camera.weapons.selectWeapon(3);
+            break;
         }
     }, false);
 };

@@ -352,6 +352,59 @@ Weapons.prototype = {
 		    }
 		}
 		if(this.actualWeapon != nextPossibleWeapon){
+			// On dis à l'arme de se repositionner à son emplacement initial
+		    this.inventory[this.actualWeapon].position = 
+		    this.inventory[this.actualWeapon].basePosition.clone();
+		    
+		    this.inventory[this.actualWeapon].rotation = 
+		    this.inventory[this.actualWeapon].baseRotation.clone();
+		    
+		    // On reset _animationDelta
+		    this._animationDelta = 0;
+
+		    this.inventory[this.actualWeapon].isActive = false;
+		    this.inventory[this.actualWeapon]
+		    this.actualWeapon = nextPossibleWeapon;
+		    this.inventory[this.actualWeapon].isActive = true;
+
+		    this.fireRate = this.Armory.weapons[this.inventory[this.actualWeapon].typeWeapon].setup.cadency;
+		    this._deltaFireRate = this.fireRate;
+		    var actualTypeWeapon = this.Armory.weapons[this.inventory[this.actualWeapon].typeWeapon];
+		    // Si l'arme a des munitions
+		    if(actualTypeWeapon.setup.ammos){
+		        this.textAmmos.innerText = this.inventory[this.actualWeapon].ammos;
+		        this.totalTextAmmos.innerText = actualTypeWeapon.setup.ammos.maximum;
+		        this.typeTextWeapon.innerText = actualTypeWeapon.name;
+		    }else{
+		        // Sinon, le texte est différent
+		        this.typeTextWeapon.innerText = actualTypeWeapon.name;
+		        this.textAmmos.innerText = "Inf";
+		        this.totalTextAmmos.innerText = "Inf";
+		    }
+		}
+	},
+	selectWeapon : function(slot) {
+	    // On définis armoryWeapons pour accéder plus facilement à Armory
+	    var armoryWeapons = this.Armory.weapons;
+		
+		// On dit qur l'arme suivante est logiquement l'arme plus le sens donné
+		var nextWeapon = slot;
+
+	    //on définis actuellement l'arme possible utilisable a 0 pour l'instant
+		var nextPossibleWeapon = null;
+
+		// L'arme qu'on va tester sera un modulo de i et de la longueur de Weapon
+		var numberWeapon = nextWeapon % this.Armory.weapons.length;
+		// On compare ce nombre au armes qu'on a dans l'inventaire
+		for (var y = 0; y < this.inventory.length; y++) {
+			if(this.inventory[y].typeWeapon === numberWeapon){
+				// Si on trouve quelque chose, c'est donnc une arme qui vient arès la notre
+				nextPossibleWeapon = y;
+				break;
+			}
+		} 
+
+		if(this.actualWeapon != nextPossibleWeapon && nextPossibleWeapon != null){
 		    // On dis à l'arme de se repositionner à son emplacement initial
 		    this.inventory[this.actualWeapon].position = 
 		    this.inventory[this.actualWeapon].basePosition.clone();
