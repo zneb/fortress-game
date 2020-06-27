@@ -13,9 +13,9 @@
         <link rel="stylesheet" type="text/css" href="css/main.css" />
     </head>
     <body>
-        <div id="topHud">
+        <div id="gameHud">
             <div id="eventConnection"></div>
-            <div id="leaderBoard">
+            <div id="leaderboard">
                 <h2>Leaderboard</h2>
                 <ul>
                     <li><p><span class="nameLeaderboard" id="player0"></span><span class="scoreLeaderboard" id="scorePlayer0"></span></p></li>
@@ -26,12 +26,11 @@
                 </ul>
                 <p id="identityGame">You are <span id="gameName"></span>. Kill them all!<p>
             </div>
-        </div>
 
-        <div id="bottomHud">
             <div id="statusPlayer">
                 <div id="lifeBox">
-                    <img src="assets/icons/health.svg">
+                    <img id="lifeOuter" src="assets/icons/life-outer.png">
+                    <img id="lifeInner" src="assets/icons/life-inner.png">
                     <p><span id="textHealth">0</span> / 100</p>
                 </div>
             </div>
@@ -42,13 +41,13 @@
                     <p><span id="numberAmmos"></span> / <span id="totalAmmos"></span></p>
                 </div>
             </div>
-        </div>
-        <div id="announcementKill" class="annoucementClose">
-            <div id="interiorDiv">
-                <p id="textAnouncement"></p>
+            <div id="announcementKill" class="annoucementClose">
+                <div id="interiorDiv">
+                    <p id="textAnouncement"></p>
+                </div>
             </div>
+            <div id="crossHair"><img  src="assets/icons/target.svg" /></div>
         </div>
-        <div id="crossHair"><img  src="assets/icons/target.svg" /></div>
         <canvas id="renderCanvas"></canvas>
         <script type="text/javascript">
             var popit = true;

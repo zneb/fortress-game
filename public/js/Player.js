@@ -27,58 +27,71 @@ Player = function(game, canvas) {
     this.displayAnnouncement = document.getElementById('announcementKill');
     this.textDisplayAnnouncement = document.getElementById('textAnouncement');
 
+    // Menus
+    this.leaderboard = document.getElementById('leaderboard');
+
     // Axe de mouvement X et Z
     this.axisMovement = [false,false,false,false];
 
     this.textHealth = document.getElementById('textHealth');
 
-    window.addEventListener("keyup", function(evt) {
-        switch(evt.code){
-            case "KeyW":
-            _this.camera.axisMovement[0] = false;
-            break;
-            case "KeyS":
-            _this.camera.axisMovement[1] = false;
-            break;
-            case "KeyA":
-            _this.camera.axisMovement[2] = false;
-            break;
-            case "KeyD":
-            _this.camera.axisMovement[3] = false;
-            break;
-        }
-        var data={
-            axisMovement : _this.camera.axisMovement
-        };
-        _this.sendNewData(data)
-
-    }, false);
-
     // Quand les touches sont relachés
     window.addEventListener("keydown", function(evt) {
         switch(evt.code){
             case "KeyW":
-            _this.camera.axisMovement[0] = true;
-            _this.camera.axisMovement[1] = false;
-            break;
+                _this.camera.axisMovement[0] = true;
+                _this.camera.axisMovement[1] = false;
+                break;
             case "KeyS":
-            _this.camera.axisMovement[1] = true;
-            _this.camera.axisMovement[0] = false;
-            break;
+                _this.camera.axisMovement[1] = true;
+                _this.camera.axisMovement[0] = false;
+                break;
             case "KeyA":
-            _this.camera.axisMovement[2] = true;
-            _this.camera.axisMovement[3] = false;
-            break;
+                _this.camera.axisMovement[2] = true;
+                _this.camera.axisMovement[3] = false;
+                break;
             case "KeyD":
-            _this.camera.axisMovement[3] = true;
-            _this.camera.axisMovement[2] = false;
-            break;
+                _this.camera.axisMovement[3] = true;
+                _this.camera.axisMovement[2] = false;
+                break;
+            case "Tab":
+                this.leaderboard.style.display = "block";
+                canvas.requestPointerLock = canvas.requestPointerLock || canvas.msRequestPointerLock || canvas.mozRequestPointerLock || canvas.webkitRequestPointerLock;
+                if (canvas.requestPointerLock) {
+                    canvas.requestPointerLock();
+                }
+                break;
         }
         var data={
             axisMovement : _this.camera.axisMovement
         };
         _this.sendNewData(data)
         
+    }, false);
+
+    window.addEventListener("keyup", function(evt) {
+        switch(evt.code){
+            case "KeyW":
+                _this.camera.axisMovement[0] = false;
+                break;
+            case "KeyS":
+                _this.camera.axisMovement[1] = false;
+                break;
+            case "KeyA":
+                _this.camera.axisMovement[2] = false;
+                break;
+            case "KeyD":
+                _this.camera.axisMovement[3] = false;
+                break;
+            case "Tab":
+                this.leaderboard.style.display = "none";
+                break;
+        }
+        var data={
+            axisMovement : _this.camera.axisMovement
+        };
+        _this.sendNewData(data)
+
     }, false);
 
     // Quand la souris bouge dans la scène
@@ -151,10 +164,8 @@ Player = function(game, canvas) {
             //On affecte a previousWheeling la valeur actuelle
             _this.previousWheeling = evt.timeStamp;
         }
-        
     }, false);
 
-    
     // Initialisation de la caméra
     this._initCamera(this.game.scene, canvas); 
 
