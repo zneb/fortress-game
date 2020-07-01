@@ -12,7 +12,7 @@ html, body {
     height: 100%;
     touch-action: none;
 }
-#crossHair{
+#crosshair{
 	position: absolute;
 	height : 100px;
 	width: 100px;
@@ -32,12 +32,6 @@ html, body {
     pointer-events : none;
 }
 
-#bottomHud{
-	position: absolute;
-	bottom: 0;
-	width: 100%;
-    pointer-events : none;
-}
 /* ------------------------------ STATUT DU PLAYER ------------------------------- */
 #statusPlayer{
     position: absolute;
@@ -55,12 +49,13 @@ html, body {
 	font-family: sans-serif;
     color: white;
     text-shadow: 2px 2px 0px #000000;
-    font-size: 2rem;
+    font-size: 2.5rem;
     position: absolute;
-    top: 0;
-    left: 12px;
+    top: 58px;
+    left: -4px;
+    right: 0;
+    text-align: center;
     margin: 0;
-    margin-top: 62px;
 }
 
 #lifeOuter {
@@ -81,32 +76,54 @@ html, body {
 /* ------------------------------ STATUT DES MUNITIONS ------------------------------- */
 #statusAmmo{
     position: absolute;
-    height: 200px;
-    width: 300px;
-    background-color: rgba(61,61,61,.5);
-    border-top-left-radius: 5px;
-    right: 15px;
-    bottom: 15px;
+    height: 140px;
+    width: 280px;
+    right: 120px;
+    bottom: 95px;
 }
 
 #ammoBox{
 	padding-left: 38px;
 }
 
+#ammoOuter {
+    position: absolute;
+    top:0;
+    left:0;
+}
+
+#ammoInner {
+    position: absolute;
+    top:0;
+    left:0;
+}
+
 #ammoBox p {
 	font-family: sans-serif;
     color: white;
-    font-size: 2rem;
-    position: relative;
-    top: 10px;
-    left: 20px;
+    text-shadow: 2px 2px 0px #000000;
+    font-size: 2.5rem;
+    position: absolute;
+    top: 40px;
+    left: 0;
+    right: 0;
+    text-align: center;
     margin: 0;
-    margin-top: 20px;
 }
 
 #ammoBox img {
-    height: 60px;
+    height: 140px;
     float: left;
+}
+
+#numberAmmos{
+    padding-right: 20px;
+    font-size: 1em;
+}
+
+#totalAmmos {
+    padding-top: 4px;
+    font-size: 1.2em;
 }
 
 #typeWeapon{

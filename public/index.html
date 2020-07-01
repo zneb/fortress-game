@@ -7,12 +7,16 @@
         <meta name="description" content="Fortress Online is an online team fps." />
         <!-- SCRIPTS DE BASE -->
         <script src="https://cdn.babylonjs.com/babylon.js"></script>
+
         <script src="https://code.jquery.com/pep/0.4.3/pep.js"></script>
         <script src="/socket.io/socket.io.js"></script>
         <!-- FEUILLES CSS -->
         <link rel="stylesheet" type="text/css" href="css/main.css" />
     </head>
     <body>
+        <div id="gameMenu">
+            <div
+        </div>
         <div id="gameHud">
             <div id="eventConnection"></div>
             <div id="leaderboard">
@@ -31,14 +35,15 @@
                 <div id="lifeBox">
                     <img id="lifeOuter" src="assets/icons/life-outer.png">
                     <img id="lifeInner" src="assets/icons/life-inner.png">
-                    <p><span id="textHealth">0</span> / 100</p>
+                    <p><span id="textHealth"></span></p>
                 </div>
             </div>
             <div id="statusAmmo">
                 <p id="typeWeapon"></p>
                 <div id="ammoBox">
-                    <img src="assets/icons/ammos.svg">
-                    <p><span id="numberAmmos"></span> / <span id="totalAmmos"></span></p>
+                    <img id="ammoOuter" src="assets/icons/ammo-outer.png">
+                    <img id="ammoInner" src="assets/icons/ammo-inner.png">
+                    <p><span id="numberAmmos"></span><span id="totalAmmos"></span></p>
                 </div>
             </div>
             <div id="announcementKill" class="annoucementClose">
@@ -46,7 +51,7 @@
                     <p id="textAnouncement"></p>
                 </div>
             </div>
-            <div id="crossHair"><img  src="assets/icons/target.svg" /></div>
+            <div id="crosshair"><img  src="assets/icons/target.svg" /></div>
         </div>
         <canvas id="renderCanvas"></canvas>
         <script type="text/javascript">
